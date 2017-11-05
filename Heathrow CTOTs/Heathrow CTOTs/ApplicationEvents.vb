@@ -2,6 +2,8 @@
 Imports System.IO
 Imports System
 Imports System.Text
+Imports Heathrow_CTOTs.Public_variables
+
 
 
 
@@ -15,21 +17,14 @@ Namespace My
     Partial Friend Class MyApplication
 
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
-            ' Create Temp Folder
-            Dim folder As String = Path.Combine(Path.GetTempPath, Path.GetRandomFileName)
-            Do While Directory.Exists(folder) Or File.Exists(folder)
-                folder = Path.Combine(Path.GetTempPath, Path.GetRandomFileName)
-            Loop
+            ' Create Folder in Local/Tem
 
-            ' Create a file in the Temp Folder
-            'create or override the file
-            Dim fs As FileStream = File.Create(path:=folder)
-
-            ' add text to the file
-            Dim info As Byte() = New UTF8Encoding(True).GetBytes("This is some text in the file.")
-            fs.Write(info, 0, info.Length)
-            fs.Close()
+            My.Computer.FileSystem.CreateDirectory(folder)
         End Sub
 
+        Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
+            ' Delete temp folder and all it's contents once the program is closed, deletes it permanenty.
+            My.Computer.FileSystem.DeleteDirectory(folder, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.DeletePermanently)
+        End Sub
     End Class
 End Namespace
