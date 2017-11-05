@@ -18,13 +18,13 @@ Namespace My
 
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             ' Create Folder in Local/Tem
-
-            My.Computer.FileSystem.CreateDirectory(folder)
+            Directory.CreateDirectory(folder)
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
             ' Delete temp folder and all it's contents once the program is closed, deletes it permanenty.
-            My.Computer.FileSystem.DeleteDirectory(folder, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.DeletePermanently)
+            'My.Computer.FileSystem.DeleteDirectory(folder, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.DeletePermanently)
+            Directory.Delete(folder, True)
         End Sub
     End Class
 End Namespace
