@@ -1,11 +1,8 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices
 Imports System.IO
-Imports System
-Imports System.Text
+Imports Heathrow_CTOTs.Core_class
 Imports Heathrow_CTOTs.Public_variables
-
-
-
+Imports System.Threading
 
 Namespace My
     ' The following events are available for MyApplication:
@@ -17,14 +14,20 @@ Namespace My
     Partial Friend Class MyApplication
 
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
+            ' Set the running status of the program to true
+            running = True
             ' Create Folder in Local/Tem
             Directory.CreateDirectory(folder)
+            Call GetData()
+
+            ' Start a new thread for the downloading of the data 
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
             ' Delete temp folder and all it's contents once the program is closed, deletes it permanenty.
-            'My.Computer.FileSystem.DeleteDirectory(folder, FileIO.UIOption.AllDialogs, FileIO.RecycleOption.DeletePermanently)
             Directory.Delete(folder, True)
+            ' Set the running status of the program to false
+            running = False
         End Sub
     End Class
 End Namespace
