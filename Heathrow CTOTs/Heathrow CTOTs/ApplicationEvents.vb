@@ -4,6 +4,8 @@ Imports Heathrow_CTOTs.Core_class
 Imports Heathrow_CTOTs.Public_variables
 Imports System.Threading
 
+
+
 Namespace My
     ' The following events are available for MyApplication:
     ' Startup: Raised when the application starts, before the startup form is created.
@@ -18,9 +20,13 @@ Namespace My
             running = True
             ' Create Folder in Local/Tem
             Directory.CreateDirectory(folder)
-            Call GetData()
 
-            ' Start a new thread for the downloading of the data 
+            'Starts the data download thread
+            DownloadingThread = New Thread(AddressOf GetData) With {
+                .IsBackground = True
+            }
+            DownloadingThread.Start()
+
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown

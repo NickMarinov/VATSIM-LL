@@ -11,7 +11,12 @@ Public Class Core_class
             Else
                 My.Computer.Network.DownloadFile("http://api.vateud.net/online/pilots/EGLL.xml", folder & "\EGLL.xml")
             End If
-            System.Threading.Thread.Sleep(60000)
+            Thread.Sleep(60000)
         End While
     End Sub
+
+    Public Shared Sub msgBox()
+        MessageBox.Show("This is a text")
+    End Sub
+
 End Class
