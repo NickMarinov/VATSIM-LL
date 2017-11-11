@@ -11,13 +11,7 @@ Public Class Core_class
             Else
                 My.Computer.Network.DownloadFile("http://api.vateud.net/online/pilots/EGLL.xml", folder & "\EGLL.xml")
             End If
-        End While
-
-    End Sub
-
-    Sub MainUpdateBackgroundThread()
-        While running = True
-            My.Computer.Network.DownloadFile("http://api.vateud.net/online/pilots/EGLL.xml", folder & "\EGLL.xml", False, True)
+            System.Threading.Thread.Sleep(60000)
         End While
     End Sub
 End Class
