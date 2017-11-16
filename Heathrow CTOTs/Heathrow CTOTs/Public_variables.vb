@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Threading
+Imports System.Xml
 
 
 Public Class Public_variables
@@ -8,6 +9,8 @@ Public Class Public_variables
     Public Shared downloads As Integer = 0
     Public Shared i As Integer = 1
     Public Shared running As Boolean = False
+
+    Public Shared VatsimData As XDocument = XDocument.Load(folder & "\EGLL.xml")
 
     ' Threads
     Public Shared DownloadingThread As Thread
