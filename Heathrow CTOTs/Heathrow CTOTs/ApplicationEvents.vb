@@ -18,8 +18,12 @@ Namespace My
         Private Sub MyApplication_Startup(sender As Object, e As StartupEventArgs) Handles Me.Startup
             ' Set the running status of the program to true
             running = True
-            ' Create Folder in Local/Tem
+            ' CreateObject folder  in Local/Tem
             Directory.CreateDirectory(folder)
+            If Directory.Exists(folder) Then
+            Else
+                Directory.CreateDirectory(folder)
+            End If
 
             'Starts the data download thread
             DownloadingThread = New Thread(AddressOf GetData) With {
