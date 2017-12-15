@@ -11,6 +11,7 @@ Public Class Core_class
             Else
                 My.Computer.Network.DownloadFile("http://api.vateud.net/online/pilots/EGLL.xml", tempFolder & "\EGLL.xml")
             End If
+            downloads = downloads + 1
             Thread.Sleep(60000)
         End While
     End Sub

@@ -31,10 +31,11 @@ Namespace My
             DownloadingThread.Start()
 
             ' Load the XML file
-            If File.Exists(tempFolder & "\EGLL.xml") Then
-                vatsimData.LoadXml(tempFolder & "\EGLL.xml")
+loadcheck:
+            If downloads > 0 Then
+                vatsimData.Load(tempFolder & "\EGLL.xml")
             Else
-
+                GoTo loadcheck
             End If
 
 
