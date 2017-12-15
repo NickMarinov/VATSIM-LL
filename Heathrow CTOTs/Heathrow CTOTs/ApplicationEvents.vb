@@ -19,10 +19,9 @@ Namespace My
             ' Set the running status of the program to true
             running = True
             ' CreateObject folder  in Local/Tem
-            Directory.CreateDirectory(folder)
-            If Directory.Exists(folder) Then
+            If Directory.Exists(tempFolder) Then
             Else
-                Directory.CreateDirectory(folder)
+                Directory.CreateDirectory(tempFolder)
             End If
 
             'Starts the data download thread
@@ -31,11 +30,19 @@ Namespace My
             }
             DownloadingThread.Start()
 
+            ' Load the XML file
+            If File.Exists(tempFolder & "\EGLL.xml") Then
+                vatsimData.LoadXml(tempFolder & "\EGLL.xml")
+            Else
+
+            End If
+
+
         End Sub
 
         Private Sub MyApplication_Shutdown(sender As Object, e As EventArgs) Handles Me.Shutdown
             ' Delete temp folder and all it's contents once the program is closed, deletes it permanenty.
-            Directory.Delete(folder, True)
+            Directory.Delete(tempFolder, True)
             ' Set the running status of the program to false
             running = False
         End Sub

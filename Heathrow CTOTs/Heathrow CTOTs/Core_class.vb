@@ -5,11 +5,11 @@ Imports System.Threading
 Public Class Core_class
     Public Shared Sub GetData()
         While running = True
-            If My.Computer.FileSystem.FileExists(folder & "\EGLL.xml") Then
-                My.Computer.FileSystem.DeleteFile(folder & "\EGLL.xml")
-                My.Computer.Network.DownloadFile("http://api.vateud.net/online/pilots/EGLL.xml", folder & "\EGLL.xml")
+            If My.Computer.FileSystem.FileExists(tempFolder & "\EGLL.xml") Then
+                My.Computer.FileSystem.DeleteFile(tempFolder & "\EGLL.xml")
+                My.Computer.Network.DownloadFile("http://api.vateud.net/online/pilots/EGLL.xml", tempFolder & "\EGLL.xml")
             Else
-                My.Computer.Network.DownloadFile("http://api.vateud.net/online/pilots/EGLL.xml", folder & "\EGLL.xml")
+                My.Computer.Network.DownloadFile("http://api.vateud.net/online/pilots/EGLL.xml", tempFolder & "\EGLL.xml")
             End If
             Thread.Sleep(60000)
         End While
